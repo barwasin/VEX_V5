@@ -3,521 +3,661 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คู่มือผู้ปกครอง · หลักสูตรหุ่นยนต์ VEX V5 · CODELAB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Mali:wght@500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
+<title>CODELAB · VEX V5 Overview · V5-01 · V5-02 · V5-03</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#0F1F44; --navy-dk:#09142C; --gold:#D4A82A; --amber:#F4B53F;
-  --soft-gold:#FAEEC8; --soft-blue:#E6ECF7; --bg:#FBF9F2; --surface:#FFFFFF;
-  --ink:#1A2547; --muted:#5B6378; --muted-2:#8A92A6;
-  --border:#E2E5EC; --border-lt:#F1F2F6; --paper:#FDFBF3;
-  --warm:#FFF4E0; --soft-pink:#FFE9E2; --soft-green:#E6F5EC; --soft-violet:#EFE7FA;
-  --green:#2DA059; --orange:#E58A2D; --red:#E05A3E; --violet:#8C6BC9; --sky:#4AB1D6;
+:root {
+  --blue:   #0EA5E9;
+  --purple: #8B5CF6;
+  --green:  #16A34A;
+  --amber:  #F59E0B;
+  --ink:    #111827;
+  --inkSoft:#4B5563;
+  --muted:  #6B7280;
+  --line:   #E5E7EB;
+  --bg:     #F1F5F9;
+  --paper:  #FFFFFF;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{font-family:"Sarabun",-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15.5px}
-.heading-font{font-family:"Mali","Sarabun",sans-serif}
-.page{max-width:880px;margin:0 auto;padding:0 22px 80px;background:var(--surface);box-shadow:0 0 30px rgba(0,0,0,.05)}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #1E293B;
+  color: var(--ink);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
 
-/* COVER */
-.cover{background:linear-gradient(135deg,var(--navy) 0%,#1B2D5C 60%,var(--navy-dk) 100%);color:#fff;padding:54px 36px 48px;margin:0 -22px 32px;position:relative;overflow:hidden;border-bottom:6px solid var(--gold)}
-.cover::before{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(244,181,63,.25),transparent 70%)}
-.cover::after{content:"";position:absolute;left:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(74,177,214,.15),transparent 70%)}
-.cover-tag{font-size:12px;letter-spacing:4px;color:var(--amber);font-weight:700;margin-bottom:14px}
-.cover-tag .dot{display:inline-block;width:8px;height:8px;background:var(--amber);border-radius:50%;margin-right:8px;vertical-align:middle}
-.cover-title{font-size:36px;font-weight:800;line-height:1.2;margin-bottom:12px;position:relative}
-.cover-sub{font-size:17px;color:#E0E5F0;font-weight:300;line-height:1.6;position:relative;max-width:680px}
-.cover-meta{margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;position:relative}
-.cover-meta .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px;color:#fff;display:flex;align-items:center;gap:6px}
-.cover-meta .chip i{color:var(--amber)}
+.deck {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-/* SALUTATION */
-.salutation{padding:24px 8px;border-left:4px solid var(--gold);background:linear-gradient(90deg,var(--warm),transparent);margin:32px 0;border-radius:0 8px 8px 0}
-.salutation .greet{font-family:"Mali",sans-serif;font-size:20px;color:var(--navy);font-weight:700;margin-bottom:8px}
-.salutation p{font-size:15px;color:var(--muted);line-height:1.8}
+.slide {
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  background: var(--paper);
+  display: none;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  padding: 4.2% 4.2% 3% 4.2%;
+}
+.slide.active { display: flex; }
 
-/* SECTION */
-section{margin:42px 0}
-.section-num{display:inline-flex;align-items:center;gap:10px;background:var(--soft-blue);color:var(--navy);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:14px}
-.section-num .n{background:var(--navy);color:var(--amber);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.section h2{font-family:"Mali","Sarabun",sans-serif;font-size:26px;color:var(--navy);font-weight:700;margin-bottom:10px;line-height:1.3}
-.section .lead{font-size:15.5px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.tag {
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: white;
+  background: var(--blue);
+  border-radius: 4px;
+  margin-bottom: 1.2em;
+  width: fit-content;
+}
+.tag.blue   { background: var(--blue); }
+.tag.purple { background: var(--purple); }
+.tag.green  { background: var(--green); }
+.tag.amber  { background: var(--amber); }
 
-/* BIG QUOTE */
-.big-quote{background:linear-gradient(120deg,#fff,var(--paper));border:2px solid var(--soft-gold);border-radius:14px;padding:26px 30px;margin:20px 0;position:relative}
-.big-quote::before{content:"\201C";position:absolute;top:-20px;left:18px;font-size:80px;color:var(--gold);font-family:Georgia,serif;line-height:1}
-.big-quote p{font-family:"Mali",sans-serif;font-size:18px;color:var(--navy);line-height:1.7;font-weight:500;padding-left:20px}
+h1 {
+  font-size: 2.4em;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 0.35em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+h1 .code { white-space: nowrap; }
 
-/* TWO-COL */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
-@media (max-width:700px){.two-col{grid-template-columns:1fr}}
+.subtitle {
+  font-size: 0.95em;
+  color: var(--inkSoft);
+  margin-bottom: 1.4em;
+}
 
-/* WHY CARDS */
-.why-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;gap:16px;align-items:flex-start;transition:transform .2s;margin-bottom:14px}
-.why-card .icon{width:52px;height:52px;border-radius:14px;background:var(--soft-gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
-.why-card .icon.blue{background:var(--soft-blue);color:var(--navy)}
-.why-card .icon.green{background:var(--soft-green);color:var(--green)}
-.why-card .icon.pink{background:var(--soft-pink);color:var(--red)}
-.why-card .icon.violet{background:var(--soft-violet);color:var(--violet)}
-.why-card h4{font-family:"Mali",sans-serif;font-size:17px;color:var(--navy);margin-bottom:6px;font-weight:700}
-.why-card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+/* === Weekly grid === */
+.weekly-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 22px;
+  min-height: 0;
+}
+.week-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 10px 14px 10px 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.week-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+}
+.week-card.blue::before   { background: var(--blue); }
+.week-card.purple::before { background: var(--purple); }
+.week-card.green::before  { background: var(--green); }
+.week-card .week-label {
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  margin-bottom: 4px;
+}
+.week-card.blue   .week-label { color: var(--blue); }
+.week-card.purple .week-label { color: var(--purple); }
+.week-card.green  .week-label { color: var(--green); }
+.week-card h3 {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.week-card .topics {
+  font-size: 0.72em;
+  color: var(--inkSoft);
+}
 
-/* COURSE BOX */
-.course-box{background:var(--surface);border:2px solid var(--border);border-radius:16px;overflow:hidden;margin:18px 0;box-shadow:0 4px 14px rgba(0,0,0,.04)}
-.course-banner{padding:24px 28px;color:#fff}
-.course-banner.v1{background:linear-gradient(120deg,#1d4d7f,#4AB1D6)}
-.course-banner.v2{background:linear-gradient(120deg,#4A2D7F,#8C6BC9)}
-.course-banner .lbl{font-size:11px;letter-spacing:3px;font-weight:700;opacity:.9}
-.course-banner h3{font-family:"Mali",sans-serif;font-size:26px;font-weight:700;margin-top:4px;line-height:1.3}
-.course-banner .tagline{font-size:14.5px;margin-top:8px;font-weight:300;opacity:.95}
-.course-content{padding:24px 28px}
-.course-content h5{font-family:"Mali",sans-serif;font-size:16px;color:var(--navy);margin:18px 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
-.course-content h5 i{color:var(--gold)}
-.course-content h5:first-child{margin-top:0}
-.course-content p{font-size:14.5px;color:var(--ink);line-height:1.8;margin-bottom:10px}
+/* === Skills grid === */
+.skills-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px 22px;
+  min-height: 0;
+}
+.skill-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.skill-card .card-header {
+  padding: 10px 18px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95em;
+}
+.skill-card.blue   .card-header { background: var(--blue); }
+.skill-card.purple .card-header { background: var(--purple); }
+.skill-card.green  .card-header { background: var(--green); }
+.skill-card.amber  .card-header { background: var(--amber); }
+.skill-card ul {
+  list-style: none;
+  padding: 14px 18px;
+  font-size: 0.78em;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.skill-card ul li::after {
+  content: '  ✓';
+  color: var(--ink);
+  margin-left: 4px;
+}
 
-.week-block{background:var(--paper);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 8px 8px 0;margin:10px 0}
-.week-block .wk-num{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
-.week-block .wk-title{font-family:"Mali",sans-serif;font-size:15.5px;font-weight:700;color:var(--navy);margin-top:2px}
-.week-block .wk-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-top:6px}
+/* === Navigation === */
+.nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.nav button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.nav button:hover { background: rgba(255,255,255,0.25); }
+.nav button:disabled { opacity: 0.3; cursor: default; }
+.nav .counter { min-width: 60px; text-align: center; font-weight: 600; }
+.nav .jump {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+.nav .jump button {
+  width: auto;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.nav .jump button.blue.act   { background: var(--blue); }
+.nav .jump button.purple.act { background: var(--purple); }
+.nav .jump button.green.act  { background: var(--green); }
 
-/* SKILLS BOX */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
-@media (max-width:700px){.skills-grid{grid-template-columns:1fr}}
-.skill-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
-.skill-box .title{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px dashed var(--border)}
-.skill-box .title i{font-size:28px;color:var(--gold)}
-.skill-box .title h4{font-family:"Mali",sans-serif;font-size:18px;color:var(--navy);font-weight:700}
-.skill-box ul{list-style:none}
-.skill-box li{padding:9px 0 9px 28px;position:relative;font-size:14.5px;color:var(--ink);line-height:1.7;border-bottom:1px solid var(--border-lt)}
-.skill-box li:last-child{border-bottom:none}
-.skill-box li::before{content:"\2713";position:absolute;left:0;top:9px;width:20px;height:20px;background:var(--soft-gold);color:var(--gold);border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
-.skill-box.soft li::before{background:var(--soft-violet);color:var(--violet)}
+/* Responsive scaling */
+.slide { font-size: clamp(10px, 1.5vw, 22px); }
 
-/* REAL LIFE */
-.reallife{background:linear-gradient(135deg,#fff,var(--soft-green));border:2px solid #C7E8D2;border-radius:14px;padding:22px 26px;margin:14px 0}
-.reallife h5{font-family:"Mali",sans-serif;color:var(--green);font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.reallife p{font-size:14.5px;color:var(--ink);line-height:1.8}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:30px;margin:20px 0}
-.timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),var(--violet))}
-.tl-item{position:relative;padding:14px 0 14px 22px;margin-bottom:6px}
-.tl-item::before{content:"";position:absolute;left:-25px;top:18px;width:18px;height:18px;background:var(--gold);border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 2px var(--gold)}
-.tl-item .when{font-size:12px;letter-spacing:2px;font-weight:700;color:var(--gold);text-transform:uppercase}
-.tl-item .what{font-family:"Mali",sans-serif;font-size:16px;color:var(--navy);font-weight:700;margin:3px 0 5px}
-.tl-item .why{font-size:14px;color:var(--muted);line-height:1.7}
-
-/* FAQ */
-.faq{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
-.faq summary{padding:16px 22px;cursor:pointer;font-weight:700;color:var(--navy);font-family:"Mali",sans-serif;font-size:15.5px;list-style:none;display:flex;align-items:center;justify-content:space-between;background:var(--paper)}
-.faq summary::after{content:"+";font-size:24px;color:var(--gold);transition:transform .2s}
-.faq[open] summary::after{content:"−"}
-.faq[open] summary{background:var(--soft-gold)}
-.faq-body{padding:18px 22px;font-size:14.5px;color:var(--muted);line-height:1.85;border-top:1px solid var(--border-lt)}
-
-/* CONTACT */
-.contact{background:linear-gradient(135deg,var(--navy),var(--navy-dk));color:#fff;padding:34px 32px;border-radius:16px;margin-top:40px;text-align:center;position:relative;overflow:hidden}
-.contact::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(244,181,63,.2),transparent 70%)}
-.contact h3{font-family:"Mali",sans-serif;font-size:24px;color:var(--amber);margin-bottom:8px}
-.contact p{font-size:15px;color:#D5DCEB;line-height:1.7;max-width:540px;margin:0 auto}
-.contact .cta{display:inline-block;background:var(--amber);color:var(--navy);padding:12px 28px;border-radius:30px;font-weight:700;margin-top:18px;text-decoration:none;font-family:"Mali",sans-serif}
-
-.footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--border-lt);text-align:center;font-size:12.5px;color:var(--muted-2)}
-.footer .logo{font-weight:800;color:var(--navy);font-size:14px;letter-spacing:2px;font-family:"Mali",sans-serif}
-
-.print-btn{position:fixed;bottom:24px;right:24px;background:var(--navy);color:var(--amber);border:none;padding:12px 18px;border-radius:30px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:"Mali",sans-serif;display:flex;align-items:center;gap:6px}
-@media print{.print-btn{display:none}.page{box-shadow:none;max-width:100%}body{background:#fff}}
+@media print {
+  body { background: white; overflow: visible; }
+  .deck { display: block; width: 100%; height: auto; }
+  .slide {
+    display: flex !important;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 20px;
+    page-break-after: always;
+    box-shadow: none;
+    border: 1px solid var(--line);
+  }
+  .nav { display: none; }
+}
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- COVER -->
-  <div class="cover">
-    <div class="cover-tag"><span class="dot"></span>CODELAB THAILAND · คู่มือผู้ปกครอง</div>
-    <h1 class="cover-title heading-font">หลักสูตรหุ่นยนต์ VEX V5<br><span style="color:var(--amber)">เรียนอะไร · ได้อะไร · ทำไมต้องเรียน</span></h1>
-    <p class="cover-sub">เอกสารฉบับนี้จัดทำขึ้นเพื่อให้คุณพ่อคุณแม่เข้าใจอย่างชัดเจนว่า ลูกของท่านจะได้เรียนรู้อะไรในหลักสูตร VEX V5 ตลอด 24 สัปดาห์ และทักษะที่ได้รับจะนำไปใช้ในชีวิตจริงและอนาคตได้อย่างไร</p>
-    <div class="cover-meta">
-      <div class="chip"><i class="ti ti-calendar"></i> 24 สัปดาห์</div>
-      <div class="chip"><i class="ti ti-school"></i> 2 ระดับ V5-01 และ V5-02</div>
-      <div class="chip"><i class="ti ti-robot"></i> อุปกรณ์มาตรฐานสากล</div>
-      <div class="chip"><i class="ti ti-trophy"></i> พร้อมแข่งขัน VRC</div>
+<div class="deck">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — V5-01 WEEKLY CONTENT                                -->
+<!-- ============================================================ -->
+<div class="slide active" data-course="blue">
+  <span class="tag blue">WEEKLY&nbsp;CONTENT</span>
+  <h1>เนื้อหารายสัปดาห์ <span class="code">V5-01</span></h1>
+  <p class="subtitle">ครอบคลุม 12 สัปดาห์ · เน้นทักษะ Workshop Practice และ Forward/Inverse Kinematics</p>
+  <div class="weekly-grid">
+    <div class="week-card blue"><div class="week-label">WEEK 1</div><h3>Workshop Safety & Motor Cartridge</h3><div class="topics">PPE, Star Drive T8/T15, Smart Motor 11W/5.5W, Gear Cartridge</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 2</div><h3>Gear Ratio & Wheels Size</h3><div class="topics">Driven/Driving, Traction/Omni/Mecanum, Linear Speed</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 3</div><h3>Gear Ratio & Torque</h3><div class="topics">T = F × L, Motor Torque Curve, Drivetrain Performance Test</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 4</div><h3>Drivetrain Integration</h3><div class="topics">2WD vs 4WD, Center of Gravity, Joystick Controller Code</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 5</div><h3>Bumper & Optical Sensor + EDP</h3><div class="topics">Boolean, Hue Detection, Loop, EDP Iteration Process</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 6</div><h3>Distance Sensor</h3><div class="topics">!/||/&amp;&amp; Time-of-Flight Laser, if-else, Logical Operators</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 7–9</div><h3>Lift Systems & Sprocket Gear</h3><div class="topics">Sprocket 6P vs HS, Arm/Chain/Scissor Lift, Trade-off</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 10</div><h3>Joint & Arm — Clawbot Analysis</h3><div class="topics">Pivot Joint, F = T÷d, Lifting Capacity Validation</div></div>
+    <div class="week-card blue"><div class="week-label">WEEK 11–12</div><h3>Swing Arm & 4-Bar Linkage</h3><div class="topics">Forward & Inverse Kinematics, sin/cos/arcsin Application</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 2 — V5-01 HARD SKILLS -->
+<div class="slide" data-course="blue">
+  <span class="tag blue">HARD&nbsp;SKILLS</span>
+  <h1>ทักษะที่จะได้จากคอร์สนี้</h1>
+  <p class="subtitle">ครอบคลุมทักษะแกนหลักทั้งหมดของหลักสูตรพื้นฐาน 1-2</p>
+  <div class="skills-grid">
+    <div class="skill-card blue">
+      <div class="card-header">Mechanical Engineering</div>
+      <ul>
+        <li>Workshop Practice และการใช้เครื่องมือพื้นฐาน</li>
+        <li>Power Transmission - Gear, Chain, Sprocket</li>
+        <li>Wheel Selection ตาม Application</li>
+        <li>Center of Gravity & Stability Analysis</li>
+        <li>Lift Mechanism Design (Arm/Chain/Scissor)</li>
+        <li>Bar Linkage และ Pivot Joint-4</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Applied Math & Physics</div>
+      <ul>
+        <li>Torque Calculation (T = F × L)</li>
+        <li>Linear Speed Physics (v = πD × N / 60)</li>
+        <li>Output Speed/Torque จาก Gear Ratio</li>
+        <li>Moment Analysis ที่ Pivot Joint</li>
+        <li>Forward Kinematics - sin, cos</li>
+        <li>Inverse Kinematics - arcsin, arccos</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Programming Basics</div>
+      <ul>
+        <li>Block Code พื้นฐานสู่ C++</li>
+        <li>Joystick Controller Programming</li>
+        <li>Loop - For, While, Infinite Loop</li>
+        <li>Conditional - if, if-else, if-elif-else</li>
+        <li>! , || , && - Logical Operators</li>
+        <li>Coordinate System และการประยุกต์ใช้งาน</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Sensors (Foundation)</div>
+      <ul>
+        <li>Bumper Switch - Boolean Input</li>
+        <li>Optical Sensor - Hue & Color Detection</li>
+        <li>Distance Sensor - Time-of-Flight Laser</li>
+        <li>Sensor Wiring และ Port Configuration</li>
+        <li>Multi-Sensor Decision Logic</li>
+        <li>Real-time Sensor Data Reading</li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- SALUTATION -->
-  <div class="salutation">
-    <div class="greet">เรียน คุณพ่อคุณแม่ทุกท่านครับ</div>
-    <p>ผมขออนุญาตเปิดเอกสารฉบับนี้ด้วยคำถามสำคัญที่พ่อแม่หลายท่านถามผมเสมอว่า <strong>"ส่งลูกมาเรียนหุ่นยนต์แล้วได้อะไรกลับไป?"</strong> เอกสารฉบับนี้คือคำตอบ — ไม่ใช่แค่รายการทักษะ แต่เป็นภาพรวมว่าลูกของท่านจะเติบโตเป็นคนแบบไหนเมื่อจบหลักสูตร</p>
+<!-- SLIDE 3 — V5-01 SOFT SKILLS -->
+<div class="slide" data-course="blue">
+  <span class="tag purple">SOFT&nbsp;SKILLS</span>
+  <h1>ทักษะอ่อนที่ปลูกฝังร่วมกับ EDP</h1>
+  <p class="subtitle">ทักษะ 21st Century ผ่านการทำงานเป็นทีมและกระบวนการ EDP</p>
+  <div class="skills-grid">
+    <div class="skill-card purple">
+      <div class="card-header">Engineering Thinking</div>
+      <ul>
+        <li>การวิเคราะห์ปัญหาและการเลือกวิธีแก้ที่เหมาะสม</li>
+        <li>การทำ Trade-off Analysis ระหว่างทางเลือก</li>
+        <li>การคิดเชิงระบบ - มองภาพรวมของหุ่นยนต์</li>
+        <li>การประเมินผลและการปรับปรุงงาน</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Safety Mindset</div>
+      <ul>
+        <li>การใช้ PPE และความปลอดภัยในห้องปฏิบัติการ</li>
+        <li>การจัดการเครื่องมือใน Workshop</li>
+        <li>การประเมินความเสี่ยงก่อนการทำงาน</li>
+        <li>การดูแลรักษาเครื่องมือและชิ้นส่วน</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Engineering Documentation</div>
+      <ul>
+        <li>การเขียน Engineering Notebook</li>
+        <li>การ Sketch ออกแบบและบันทึกแนวคิด</li>
+        <li>การเขียน EDP ทั้ง 6 ขั้น</li>
+        <li>การทำ Test Report และตารางผลทดสอบ</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Iteration Mindset</div>
+      <ul>
+        <li>การยอมรับว่าหุ่นยนต์ตัวแรกอาจไม่สมบูรณ์</li>
+        <li>การวิเคราะห์ Failure และเรียนรู้จากข้อผิดพลาด</li>
+        <li>การปรับปรุงงานอย่างมีระบบ</li>
+        <li>การอดทนต่อการลองผิดลองถูก</li>
+      </ul>
+    </div>
   </div>
+</div>
 
-  <!-- SECTION 1: WHY -->
-  <section class="section">
-    <div class="section-num"><span class="n">1</span> ทำไมต้องเรียนหุ่นยนต์</div>
-    <h2 class="heading-font">หุ่นยนต์ไม่ใช่แค่ของเล่น แต่คือสนามฝึกความคิดของวิศวกร</h2>
-    <p class="lead">โลกในอีก 10 ปีข้างหน้า ทุกอาชีพจะเกี่ยวข้องกับเทคโนโลยี ไม่ว่าจะเป็นหมอที่ใช้หุ่นยนต์ผ่าตัด เกษตรกรที่ใช้โดรน หรือนักการตลาดที่ใช้ AI วิเคราะห์ข้อมูล หลักสูตรหุ่นยนต์ของเราไม่ได้สอนให้ลูกเป็น "วิศวกร" คนเดียว แต่สอน <strong>วิธีคิดแบบวิศวกร</strong> ที่ใช้ได้กับทุกอาชีพในอนาคต</p>
-
-    <div class="big-quote">
-      <p>"หุ่นยนต์เป็นเพียงเครื่องมือ สิ่งที่เด็กได้จริงคือ <strong>วิธีการแก้ปัญหาอย่างเป็นระบบ</strong> — เจอปัญหา ลองหลายวิธี ทดสอบ บันทึก ปรับปรุง แล้วทำซ้ำจนสำเร็จ — นี่คือทักษะที่ติดตัวเด็กไปตลอดชีวิต"</p>
-    </div>
-
-    <div class="two-col">
-      <div class="why-card">
-        <div class="icon blue"><i class="ti ti-brain"></i></div>
-        <div><h4>คิดเป็นระบบ</h4><p>เด็กเรียนรู้ว่าทุกปัญหามีโครงสร้างของการแก้ ไม่ใช่เดามั่ว แต่ตั้งสมมติฐาน ทดสอบ และพิสูจน์</p></div>
-      </div>
-      <div class="why-card">
-        <div class="icon green"><i class="ti ti-tools"></i></div>
-        <div><h4>ลงมือทำจริง</h4><p>ไม่ใช่นั่งฟังบรรยาย แต่จับเครื่องมือ ขันสกรู ต่อสายไฟ เขียนโค้ดด้วยมือตัวเอง</p></div>
-      </div>
-      <div class="why-card">
-        <div class="icon pink"><i class="ti ti-refresh"></i></div>
-        <div><h4>ไม่กลัวความล้มเหลว</h4><p>หุ่นยนต์ไม่ทำงานในรอบแรกเป็นเรื่องปกติ เด็กเรียนรู้ว่าความล้มเหลวคือข้อมูลสำหรับปรับปรุง</p></div>
-      </div>
-      <div class="why-card">
-        <div class="icon violet"><i class="ti ti-users"></i></div>
-        <div><h4>ทำงานเป็นทีม</h4><p>คนหนึ่งคิดออกแบบ คนหนึ่งสร้าง คนหนึ่งเขียนโปรแกรม คนหนึ่งบันทึก — เหมือนทีมจริงในบริษัทเทคโนโลยี</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: V5-01 -->
-  <section class="section">
-    <div class="section-num"><span class="n">2</span> คอร์สแรก V5-01</div>
-    <h2 class="heading-font">"สร้างให้เคลื่อนที่ได้" — รากฐานของวิศวกรรม</h2>
-    <p class="lead">คอร์สแรกของลูกใช้เวลา 12 สัปดาห์ เน้นให้เด็กเข้าใจหุ่นยนต์ตั้งแต่ระดับชิ้นส่วน ลูกจะได้จับเครื่องมือ ขันสกรู ประกอบหุ่นยนต์ขึ้นมาทีละขั้น เหมือนช่างเทคนิคที่เข้าใจทุกชิ้นส่วนของรถยนต์ที่ตนเองสร้าง</p>
-
-    <div class="course-box">
-      <div class="course-banner v1">
-        <div class="lbl">COURSE V5-01 · 12 WEEKS</div>
-        <h3>สร้าง · ขยับ · ยก — กลไกพื้นฐาน</h3>
-        <p class="tagline">ลูกจะกลายเป็น "ช่างหุ่นยนต์" ที่เข้าใจกลไก เฟือง ล้อ และการเขียนโปรแกรมพื้นฐาน</p>
-      </div>
-      <div class="course-content">
-
-        <h5><i class="ti ti-flag-3"></i> ลูกของท่านจะได้เรียนอะไรในแต่ละช่วง</h5>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 1 · จุดเริ่มต้น</div>
-          <div class="wk-title">เครื่องมือและความปลอดภัย</div>
-          <div class="wk-desc">รู้จักเครื่องมือช่าง (ไขควง, ประแจ, เลื่อย, ตะไบ) เรียนรู้การใส่อุปกรณ์ป้องกัน เช่น ถุงมือและแว่นตา เพราะ <strong>ความปลอดภัยคือสิ่งแรกที่วิศวกรต้องคำนึงถึง</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 2–3 · เฟืองและล้อ</div>
-          <div class="wk-title">ทำไมเฟืองใหญ่หมุนช้ากว่าเฟืองเล็ก?</div>
-          <div class="wk-desc">เด็กจะเข้าใจสมการของเฟือง รู้ว่าทำไมรถจักรยานต้องมีหลายเกียร์ คำนวณความเร็วและแรงบิดได้ — <strong>เป็นจุดเริ่มต้นของฟิสิกส์ที่จับต้องได้</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 4 · ระบบขับเคลื่อน</div>
-          <div class="wk-title">ออกแบบให้หุ่นยนต์ไม่คว่ำ</div>
-          <div class="wk-desc">เข้าใจ "จุดศูนย์ถ่วง" ทำไมรถบรรทุกที่บรรทุกของสูงๆ จึงพลิกง่ายในโค้ง เด็กจะออกแบบหุ่นยนต์ของตนเองให้มั่นคง และเขียนโปรแกรมขับด้วยจอยสติ๊ก</div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 5–6 · เซ็นเซอร์เริ่มต้น</div>
-          <div class="wk-title">หุ่นยนต์เริ่มมี "ประสาทสัมผัส"</div>
-          <div class="wk-desc">รู้จักเซ็นเซอร์สัมผัส (Bumper), เซ็นเซอร์แสง (Optical) และเซ็นเซอร์วัดระยะ (Distance) เรียนรู้การเขียนโปรแกรม "ถ้า–แล้ว" และคำสั่งวนซ้ำ — <strong>เป็นพื้นฐานของการเขียนโปรแกรมทุกภาษา</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 7–9 · ระบบยก</div>
-          <div class="wk-title">หุ่นยนต์เริ่มทำงานหนักได้</div>
-          <div class="wk-desc">ออกแบบระบบยกของ 3 แบบ (แขนตรง, โซ่, กรรไกร) เลือกใช้สปร็อกเก็ตและโซ่ — เหมือนระบบยกของรถเครนจริง</div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 10–12 · แขนกลและคณิตศาสตร์</div>
-          <div class="wk-title">ใช้ตรีโกณมิติคำนวณตำแหน่งแขนกล</div>
-          <div class="wk-desc">เด็กจะใช้ sin, cos ที่เรียนในห้องเรียนคณิต <strong>มาคำนวณตำแหน่งแขนหุ่นยนต์จริง</strong> — ทำให้เห็นว่าคณิตศาสตร์ในห้องเรียนไม่ใช่เรื่องไกลตัว</div>
-        </div>
-
-        <div class="reallife">
-          <h5><i class="ti ti-bulb"></i> ใช้ในชีวิตจริงอย่างไร?</h5>
-          <p>เมื่อจบ V5-01 ลูกจะมองเห็นโลกรอบตัวต่างไป — เห็นเฟืองในนาฬิกาข้อมือ เข้าใจว่าทำไมรถบรรทุกพลิกง่ายในโค้ง สังเกตเซ็นเซอร์ในประตูอัตโนมัติของห้างสรรพสินค้า และอธิบายได้ว่ามันทำงานอย่างไร <strong>นี่คือ "สายตาของวิศวกร" ที่ติดตัวลูกไปตลอด</strong></p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: V5-02 -->
-  <section class="section">
-    <div class="section-num"><span class="n">3</span> คอร์สที่สอง V5-02</div>
-    <h2 class="heading-font">"ทำให้คิดเองได้" — สู่หุ่นยนต์อัจฉริยะ</h2>
-    <p class="lead">หลังจากผ่านพื้นฐาน 12 สัปดาห์ของ V5-01 แล้ว ลูกจะก้าวเข้าสู่โลกของ <strong>หุ่นยนต์อัตโนมัติ</strong> เรียนรู้การใช้เซ็นเซอร์ 8 ชนิด รวมถึงกล้อง AI และจบหลักสูตรด้วยการแข่งขันจริง</p>
-
-    <div class="course-box">
-      <div class="course-banner v2">
-        <div class="lbl">COURSE V5-02 · 12 WEEKS</div>
-        <h3>รับรู้ · คิด · ทำ — หุ่นยนต์ที่ตัดสินใจเองได้</h3>
-        <p class="tagline">ลูกจะกลายเป็น "วิศวกรหุ่นยนต์" ที่ออกแบบระบบอัจฉริยะและพร้อมแข่งขันระดับสากล</p>
-      </div>
-      <div class="course-content">
-
-        <h5><i class="ti ti-flag-3"></i> ลูกของท่านจะได้เรียนอะไรในแต่ละช่วง</h5>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 1–2 · ความแม่นยำ</div>
-          <div class="wk-title">หุ่นยนต์ขับได้แม่นยำระดับองศา</div>
-          <div class="wk-desc">ใช้เซ็นเซอร์วัดการหมุน (Rotation) และเซ็นเซอร์ทรงตัว (IMU เหมือนในโทรศัพท์) เพื่อให้หุ่นยนต์ขับตรงเป๊ะและเลี้ยวได้แม่นยำ <strong>เป้าหมายคือคลาดเคลื่อนไม่เกิน ±5 cm และ ±5 องศา</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 3–6 · มือกลของหุ่นยนต์</div>
-          <div class="wk-title">ออกแบบระบบเก็บและปล่อยวัตถุ</div>
-          <div class="wk-desc">เรียนรู้ฟิสิกส์ของแรงเสียดทาน คำนวณช่องว่างระหว่างลูกกลิ้งให้พอดี (70–80% ของขนาดวัตถุ) ทดสอบที่ความเร็ว 3 ระดับ — <strong>ต้องสำเร็จ ≥ 80% จาก 10 ครั้งจึงจะผ่าน</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 7–8 · กล้อง AI</div>
-          <div class="wk-title">หุ่นยนต์เริ่ม "มองเห็น" ด้วย AI</div>
-          <div class="wk-desc">ใช้กล้อง AI Vision จดจำสีและรหัส AprilTag เขียนโปรแกรมให้หุ่นยนต์ <strong>เห็นลูกบอลสีแดง ก็หยิบ เห็นรหัสที่กำหนด ก็เลี้ยวไปทางนั้น</strong> — เป็นพื้นฐานเดียวกับ Tesla Autopilot</div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 9 · วิทยาศาสตร์ข้อมูล</div>
-          <div class="wk-title">เก็บข้อมูล วิเคราะห์ข้อผิดพลาด</div>
-          <div class="wk-desc">เด็กจะตั้งเป้าหมาย (Setpoint) วัดผลจริง (Actual) แล้วคำนวณค่าผิดพลาด (Error) — <strong>เป็นหัวใจของวิทยาศาสตร์ข้อมูล (Data Science) ในระดับเริ่มต้น</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 10 · เดินตามเส้น</div>
-          <div class="wk-title">หุ่นยนต์เคลื่อนที่อัตโนมัติได้</div>
-          <div class="wk-desc">ใช้เซ็นเซอร์อินฟราเรดเดินตามเส้นบนพื้น — เหมือนหุ่นยนต์ดูดฝุ่นหรือ AGV ในโรงงานสมัยใหม่ ต้องสำเร็จ <strong>8 ใน 10 ครั้ง</strong></div>
-        </div>
-
-        <div class="week-block">
-          <div class="wk-num">สัปดาห์ที่ 11–12 · แข่งขันจริง</div>
-          <div class="wk-title">Mini Intake Challenge — สนามแข่งจำลอง</div>
-          <div class="wk-desc">แข่งกัน 1 นาทีโดยควบคุมด้วยมือ + 15 วินาทีให้หุ่นยนต์ทำงานเอง ทีมที่ชนะคือทีมที่ออกแบบดี เขียนโปรแกรมดี และนำเสนอได้ดี <strong>คะแนน 40% จากการแข่ง 35% จากสมุดบันทึก 25% จากการนำเสนอ</strong></div>
-        </div>
-
-        <div class="reallife">
-          <h5><i class="ti ti-bulb"></i> ใช้ในชีวิตจริงอย่างไร?</h5>
-          <p>ทักษะที่ลูกได้จาก V5-02 คือทักษะเดียวกันกับที่ใช้ใน <strong>รถยนต์ไร้คนขับ, โดรนส่งของ, แขนกลในโรงงาน, และระบบ AI ทุกชนิดในปัจจุบัน</strong> เด็กที่เข้าใจหลักการเหล่านี้ตั้งแต่อายุน้อย จะมีพื้นฐานเหนือเพื่อนอย่างชัดเจนเมื่อขึ้นมหาวิทยาลัย</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: HARD SKILLS -->
-  <section class="section">
-    <div class="section-num"><span class="n">4</span> ทักษะที่จับต้องได้ (Hard Skills)</div>
-    <h2 class="heading-font">ทักษะวิชาการที่ลูกจะติดตัวกลับบ้าน</h2>
-    <p class="lead">นี่คือทักษะที่วัดได้ ทดสอบได้ และเป็นพื้นฐานสำหรับการเรียนต่อในสาขา STEM (วิทยาศาสตร์ เทคโนโลยี วิศวกรรม คณิตศาสตร์) รวมถึงคณะวิศวกรรมศาสตร์ในมหาวิทยาลัย</p>
-
-    <div class="skills-grid">
-      <div class="skill-box">
-        <div class="title"><i class="ti ti-tools"></i><h4>ทักษะช่างและกลไก</h4></div>
-        <ul>
-          <li>ใช้เครื่องมือช่างได้ปลอดภัย ขันสกรู ตัด เจาะ</li>
-          <li>ประกอบและถอดประกอบโครงสร้างซับซ้อน</li>
-          <li>เข้าใจระบบเฟือง สปร็อกเก็ต โซ่ และข้อต่อ</li>
-          <li>ออกแบบกลไกยก จับ และข้อต่อแขนกล</li>
-          <li>วิเคราะห์จุดศูนย์ถ่วงและความมั่นคงของโครงสร้าง</li>
-        </ul>
-      </div>
-
-      <div class="skill-box">
-        <div class="title"><i class="ti ti-math-function"></i><h4>คณิตศาสตร์และฟิสิกส์ประยุกต์</h4></div>
-        <ul>
-          <li>คำนวณอัตราทดเฟืองและความเร็วเชิงเส้น</li>
-          <li>ใช้สูตรแรงบิด (Torque = แรง × ระยะ) ในชีวิตจริง</li>
-          <li>ใช้ตรีโกณมิติ (sin, cos) คำนวณตำแหน่งแขนกล</li>
-          <li>แปลงสัญญาณอนาล็อก 0–4095 เป็นองศา 0–270°</li>
-          <li>วิเคราะห์แรงเสียดทานและแรงกดของลูกกลิ้ง</li>
-        </ul>
-      </div>
-
-      <div class="skill-box">
-        <div class="title"><i class="ti ti-code"></i><h4>ทักษะการเขียนโปรแกรม</h4></div>
-        <ul>
-          <li>เขียนโปรแกรมแบบ Block Code และต่อยอดสู่ C++</li>
-          <li>ใช้คำสั่ง Loop, If-Else, Logical Operators</li>
-          <li>เขียนโปรแกรมควบคุมจอยสติ๊ก (Driver Control)</li>
-          <li>เขียนโปรแกรมอัตโนมัติ (Autonomous)</li>
-          <li>ดีบักและแก้ไขข้อผิดพลาดในโค้ดของตนเอง</li>
-        </ul>
-      </div>
-
-      <div class="skill-box">
-        <div class="title"><i class="ti ti-eye"></i><h4>เซ็นเซอร์และ AI</h4></div>
-        <ul>
-          <li>ใช้งานเซ็นเซอร์ 8 ชนิดได้คล่อง</li>
-          <li>เปรียบเทียบการควบคุมแบบนับเวลา vs ใช้เซ็นเซอร์</li>
-          <li>ปรับ Calibration และลด Drift ของเซ็นเซอร์</li>
-          <li>ใช้กล้อง AI Vision จดจำสีและ AprilTag</li>
-          <li>เขียนอัลกอริทึมเดินตามเส้นด้วย Target/Error</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: SOFT SKILLS -->
-  <section class="section">
-    <div class="section-num"><span class="n">5</span> ทักษะติดตัวตลอดชีวิต (Soft Skills)</div>
-    <h2 class="heading-font">สิ่งที่สำคัญที่สุดที่ลูกจะได้รับ</h2>
-    <p class="lead">หลายผู้ปกครองคิดว่าเรียนหุ่นยนต์ก็ได้แค่ทักษะหุ่นยนต์ แต่ในความเป็นจริง <strong>สิ่งที่ติดตัวลูกไปตลอดชีวิตคือทักษะ Soft Skills ที่ฝึกผ่านกระบวนการเหล่านี้</strong> ซึ่งเป็นทักษะเดียวกับที่บริษัทเทคโนโลยีระดับโลกต้องการ</p>
-
-    <div class="skills-grid">
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-bulb"></i><h4>คิดแก้ปัญหาเป็นระบบ</h4></div>
-        <ul>
-          <li>มองปัญหาให้ออกก่อนกระโดดเข้าหาวิธีแก้</li>
-          <li>คิดทางเลือกหลายแบบก่อนตัดสินใจ</li>
-          <li>ให้เหตุผลรองรับทุกการตัดสินใจ</li>
-          <li>ไม่ตื่นตระหนกเมื่อเจอปัญหาใหม่</li>
-        </ul>
-      </div>
-
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-refresh"></i><h4>ทัศนคติแบบเติบโต (Growth Mindset)</h4></div>
-        <ul>
-          <li>เข้าใจว่าความล้มเหลวคือส่วนหนึ่งของกระบวนการ</li>
-          <li>ไม่ยอมแพ้แม้ลองหลายครั้ง</li>
-          <li>เห็นข้อผิดพลาดเป็นข้อมูลสำหรับปรับปรุง</li>
-          <li>ฝึกความอดทนและความสม่ำเสมอ</li>
-        </ul>
-      </div>
-
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-users"></i><h4>ทำงานเป็นทีม</h4></div>
-        <ul>
-          <li>แบ่งบทบาทตามความถนัด</li>
-          <li>สื่อสารกับเพื่อนร่วมทีมอย่างมีประสิทธิภาพ</li>
-          <li>ฟังความคิดเห็นที่แตกต่างโดยไม่ตัดสิน</li>
-          <li>ช่วยเหลือเพื่อนเมื่อทีมต้องการ</li>
-        </ul>
-      </div>
-
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-presentation"></i><h4>การสื่อสารและนำเสนอ</h4></div>
-        <ul>
-          <li>นำเสนอผลงานต่อหน้าผู้อื่น 3–5 นาที</li>
-          <li>อธิบายเรื่องซับซ้อนให้คนทั่วไปเข้าใจ</li>
-          <li>ใช้ตัวเลขและข้อมูลประกอบการพูด</li>
-          <li>ตอบคำถามอย่างมีเหตุผล</li>
-        </ul>
-      </div>
-
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-book"></i><h4>การบันทึกและจัดระเบียบ</h4></div>
-        <ul>
-          <li>เขียนสมุดบันทึกวิศวกรรม (Engineering Notebook)</li>
-          <li>วาดภาพประกอบ จดบันทึกการทดลอง</li>
-          <li>จัดระเบียบข้อมูลให้ค้นหาง่าย</li>
-          <li>ทักษะที่วิศวกรมืออาชีพต้องใช้ทุกวัน</li>
-        </ul>
-      </div>
-
-      <div class="skill-box soft">
-        <div class="title"><i class="ti ti-chart-line"></i><h4>การวิเคราะห์ข้อมูล</h4></div>
-        <ul>
-          <li>อ่านและเขียนตาราง Data Table ได้</li>
-          <li>คำนวณค่าสำเร็จเป็นเปอร์เซ็นต์</li>
-          <li>เข้าใจค่าคลาดเคลื่อนและช่วงความแม่นยำ</li>
-          <li>ตัดสินใจโดยใช้ข้อมูลแทนความรู้สึก</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 6: TIMELINE -->
-  <section class="section">
-    <div class="section-num"><span class="n">6</span> เส้นทางการเติบโต</div>
-    <h2 class="heading-font">24 สัปดาห์ที่จะเปลี่ยนลูกของท่าน</h2>
-    <p class="lead">นี่คือภาพรวมของการเปลี่ยนแปลงที่คุณจะเห็นในตัวลูก ตั้งแต่วันแรกที่ก้าวเข้ามาในห้องเรียน จนถึงวันสุดท้ายที่ยืนแข่งขัน</p>
-
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="when">เดือนที่ 1</div>
-        <div class="what">"ลูกเริ่มสนใจเครื่องมือรอบบ้าน"</div>
-        <div class="why">หลังจากเรียนเรื่องเครื่องมือและความปลอดภัย ลูกจะเริ่มสังเกตว่าพ่อใช้ไขควงแบบไหน เครื่องใช้ในบ้านมีกลไกอะไร</div>
-      </div>
-      <div class="tl-item">
-        <div class="when">เดือนที่ 2</div>
-        <div class="what">"ลูกถามคำถามที่ลึกขึ้น"</div>
-        <div class="why">เริ่มถามว่ารถจักรยานมีกี่เกียร์ ทำไมล้อใหญ่ปั่นช้ากว่า เริ่มเข้าใจว่าทุกสิ่งรอบตัวมีหลักการอยู่เบื้องหลัง</div>
-      </div>
-      <div class="tl-item">
-        <div class="when">เดือนที่ 3</div>
-        <div class="what">"ลูกเริ่มเขียนโปรแกรมได้เอง"</div>
-        <div class="why">จากที่เคยลอกตัวอย่าง เริ่มต่อยอด ดัดแปลง และคิดเองได้ — เป็นจุดเปลี่ยนสำคัญของการเรียนรู้</div>
-      </div>
-      <div class="tl-item">
-        <div class="when">เดือนที่ 4</div>
-        <div class="what">"ลูกใช้คณิตศาสตร์อย่างมีเหตุผล"</div>
-        <div class="why">ใช้ sin, cos ในชั้นเรียนคณิตอย่างเข้าใจ ไม่ใช่แค่ท่องสูตร เพราะเห็นว่ามันใช้คำนวณตำแหน่งแขนหุ่นยนต์ของตนเอง</div>
-      </div>
-      <div class="tl-item">
-        <div class="when">เดือนที่ 5</div>
-        <div class="what">"ลูกพูดถึง AI และเซ็นเซอร์อย่างเข้าใจ"</div>
-        <div class="why">เมื่อเรียนถึง AI Vision ลูกจะเริ่มเล่าให้ฟังว่ารถ Tesla, โดรน, หรือหุ่นยนต์ดูดฝุ่นทำงานอย่างไร</div>
-      </div>
-      <div class="tl-item">
-        <div class="when">เดือนที่ 6</div>
-        <div class="what">"ลูกยืนนำเสนออย่างมั่นใจ"</div>
-        <div class="why">วันแข่งขัน ลูกจะนำเสนอผลงานต่อหน้ากรรมการ ใช้ข้อมูลที่บันทึกตลอด 6 เดือนเป็นหลักฐาน — คือช่วงเวลาที่คุณพ่อคุณแม่จะภูมิใจที่สุด</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 7: FAQ -->
-  <section class="section">
-    <div class="section-num"><span class="n">7</span> คำถามที่ผู้ปกครองถามบ่อย</div>
-    <h2 class="heading-font">ข้อสงสัยที่เราเจอบ่อยที่สุด</h2>
-
-    <details class="faq">
-      <summary>ลูกของฉันไม่เก่งคณิตศาสตร์ จะเรียนได้ไหม?</summary>
-      <div class="faq-body">ได้แน่นอนครับ หลักสูตรของเราออกแบบให้เด็ก <strong>เริ่มจากการลงมือทำก่อน</strong> แล้วเห็นความจำเป็นของคณิตศาสตร์ทีหลัง เด็กหลายคนที่เคยกลัวคณิต กลับมาสนใจและเข้าใจดีขึ้นหลังเรียนหุ่นยนต์ เพราะได้เห็นว่าคณิตศาสตร์ใช้แก้ปัญหาจริงได้อย่างไร</div>
-    </details>
-
-    <details class="faq">
-      <summary>เรียนแล้วลูกจะติดหน้าจอมากขึ้นไหม?</summary>
-      <div class="faq-body">ตรงกันข้ามครับ หลักสูตร VEX V5 <strong>ใช้เวลาส่วนใหญ่ในการลงมือประกอบและทดสอบกับหุ่นยนต์จริง</strong> ไม่ใช่นั่งหน้าจอ คอมพิวเตอร์เป็นเพียงเครื่องมือเสริม ส่วนใหญ่เด็กจะอยู่ที่โต๊ะทำงานพร้อมเพื่อน ขันสกรู ทดสอบกลไก และพูดคุยแลกเปลี่ยนความคิด</div>
-    </details>
-
-    <details class="faq">
-      <summary>ค่าใช้จ่ายนี้คุ้มค่าหรือไม่?</summary>
-      <div class="faq-body">เรามองว่า <strong>ทักษะที่ลูกได้คือการลงทุนระยะยาว</strong> ทั้งทักษะการแก้ปัญหา การคิดเป็นระบบ และการทำงานเป็นทีม เป็นทักษะที่บริษัทระดับโลกต้องการในทุกอาชีพ นอกจากนี้ เด็กที่ผ่านการแข่งขัน VEX มักได้เปรียบในการสมัครเข้ามหาวิทยาลัยทั้งในและต่างประเทศ โดยเฉพาะคณะวิศวกรรมศาสตร์</div>
-    </details>
-
-    <details class="faq">
-      <summary>ลูกไม่เคยเรียนหุ่นยนต์มาก่อน เริ่ม V5-01 ได้เลยไหม?</summary>
-      <div class="faq-body">ได้ครับ V5-01 ออกแบบมาสำหรับผู้ที่ไม่มีพื้นฐานโดยตรง <strong>เริ่มจากการรู้จักเครื่องมือและความปลอดภัยในสัปดาห์แรก</strong> แล้วค่อยๆ ไต่ระดับขึ้นไป ผู้สอนของเราพร้อมดูแลเด็กทุกระดับ</div>
-    </details>
-
-    <details class="faq">
-      <summary>หลังจบ V5-02 แล้วเรียนอะไรต่อ?</summary>
-      <div class="faq-body">เด็กที่ผ่าน V5-02 สามารถ <strong>เข้าร่วมทีมแข่งขัน VRC (VEX Robotics Competition) ระดับประเทศและระดับโลก</strong> ได้ทันที CODELAB มีหลักสูตร Advanced สำหรับเด็กที่ต้องการพัฒนาทักษะลึกขึ้น รวมถึงการเรียนรู้ระบบ PID Control, Path Planning, และ Computer Vision ขั้นสูง</div>
-    </details>
-
-    <details class="faq">
-      <summary>ที่บ้านควรสนับสนุนลูกอย่างไร?</summary>
-      <div class="faq-body">สิ่งที่ดีที่สุดที่คุณพ่อคุณแม่ทำได้คือ <strong>ฟังลูกเล่าด้วยความสนใจ</strong> ถามคำถามว่า "วันนี้หุ่นยนต์ของลูกทำอะไรได้?" "เจอปัญหาอะไร?" "แก้ยังไง?" ความสนใจของพ่อแม่จะเป็นแรงผลักดันที่ทรงพลังที่สุด นอกจากนี้ การพาลูกไปสังเกตเทคโนโลยีในชีวิตประจำวัน เช่น ประตูอัตโนมัติ ลิฟท์ หรือรถยนต์ จะช่วยให้ลูกเชื่อมโยงสิ่งที่เรียนกับโลกจริง</div>
-    </details>
-  </section>
-
-  <!-- CONTACT -->
-  <div class="contact">
-    <h3>ขอบคุณที่ไว้วางใจ CODELAB</h3>
-    <p>เราเชื่อว่าทุกเด็กสามารถเป็นวิศวกรในแบบของตัวเองได้ หากได้รับโอกาสและสภาพแวดล้อมที่เหมาะสม หลักสูตร VEX V5 คือก้าวแรกของการเดินทางสายเทคโนโลยีที่จะอยู่กับลูกของท่านไปตลอดชีวิต</p>
-    <a class="cta" href="#">สอบถามรายละเอียดเพิ่มเติม</a>
+<!-- ============================================================ -->
+<!-- SLIDE 4 — V5-02 WEEKLY CONTENT                                -->
+<!-- ============================================================ -->
+<div class="slide" data-course="purple">
+  <span class="tag purple">WEEKLY&nbsp;CONTENT</span>
+  <h1>เนื้อหารายสัปดาห์ <span class="code">V5-02</span></h1>
+  <p class="subtitle">ครอบคลุม 12 สัปดาห์ · เน้นโปรเจคใหญ่ Mini Intake Challenge</p>
+  <div class="weekly-grid">
+    <div class="week-card purple"><div class="week-label">WEEK 1</div><h3>Rotation Sensor & Precise Drive</h3><div class="topics">Open vs Closed-Loop, 0.088° resolution, Run Away mission</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 2</div><h3>Inertial Sensor (IMU)</h3><div class="topics">Gyro + Accelerometer, Calibration, Square Driving ±5°</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 3–4</div><h3>Intake / Outtake Design</h3><div class="topics">Friction Physics, Gap = 70–80%, System Diagram</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 5–6</div><h3>Intake / Outtake Programming</h3><div class="topics">การเขียนโปรแกรม, Data Log, EDP V2 Iteration 3</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 7–8</div><h3>AI Vision Sensor</h3><div class="topics">Color Blob + AprilTag, Auto-Trigger, Integration Test</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 9</div><h3>Potentiometer + Data Collection</h3><div class="topics">Raw Angle, Error Analysis, Deadband Tuning</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 10</div><h3>Line Tracker Sensor</h3><div class="topics">Target/Error, Proportional Control (PID Foundation)</div></div>
+    <div class="week-card purple"><div class="week-label">WEEK 11–12</div><h3>Mini Intake Challenge — Capstone</h3><div class="topics">Driver 1:00 + Auto 0:15, Comp 40% + EDP 35% + Pres 25%</div></div>
   </div>
+</div>
 
-  <div class="footer">
-    <div class="logo">CODELAB THAILAND</div>
-    <div style="margin-top:6px">คู่มือผู้ปกครอง · หลักสูตรหุ่นยนต์ VEX V5 · ปีการศึกษา 2026</div>
+<!-- SLIDE 5 — V5-02 HARD SKILLS -->
+<div class="slide" data-course="purple">
+  <span class="tag purple">HARD&nbsp;SKILLS</span>
+  <h1>ทักษะที่ขยับสู่ Engineering Senior</h1>
+  <p class="subtitle">ต่อยอดจากคอร์สพื้นฐานไปสู่ระดับ 3-4 ทักษะเชิงระบบ</p>
+  <div class="skills-grid">
+    <div class="skill-card purple">
+      <div class="card-header">Sensors & Instrumentation</div>
+      <ul>
+        <li>Rotation Sensor (0.088° resolution)</li>
+        <li>Inertial Sensor - Gyro + Accelerometer</li>
+        <li>Potentiometer & Analog Conversion</li>
+        <li>Line Tracker (IR Reflection)</li>
+        <li>AI Vision (Smart Camera)</li>
+        <li>Multi-Sensor Calibration & Drift Reduction</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Control Systems</div>
+      <ul>
+        <li>Open-Loop vs Closed-Loop Control</li>
+        <li>Heading Control ด้วย IMU</li>
+        <li>Proportional Control (Target/Error)</li>
+        <li>PID Foundation Concepts</li>
+        <li>Deadband & Stability Tuning</li>
+        <li>Feedback Loop Engineering</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Computer Vision</div>
+      <ul>
+        <li>Color Blob Detection</li>
+        <li>AprilTag Detection & ID Recognition</li>
+        <li>Object Tracking ใน Real-Time</li>
+        <li>Auto-Trigger Logic จาก Vision</li>
+        <li>Vision-Based Navigation</li>
+        <li>Multi-Sensor Fusion</li>
+      </ul>
+    </div>
+    <div class="skill-card purple">
+      <div class="card-header">Data Science & Analysis</div>
+      <ul>
+        <li>Setpoint vs Actual - Error Analysis</li>
+        <li>Average Error Calculation</li>
+        <li>(%) Success Rate Computation</li>
+        <li>Data Table Construction</li>
+        <li>Statistical Significance Awareness</li>
+        <li>Performance Profiling</li>
+      </ul>
+    </div>
   </div>
+</div>
+
+<!-- SLIDE 6 — V5-02 SOFT SKILLS -->
+<div class="slide" data-course="purple">
+  <span class="tag blue">SOFT&nbsp;SKILLS</span>
+  <h1>ทักษะอ่อนสำหรับการก้าวสู่ทีมแข่งขัน</h1>
+  <p class="subtitle">ทักษะ 21st Century ตามแนวทาง WEF Future of Jobs</p>
+  <div class="skills-grid">
+    <div class="skill-card blue">
+      <div class="card-header">Technical Communication</div>
+      <ul>
+        <li>การนำเสนอผลงาน 3–5 นาทีอย่างมืออาชีพ</li>
+        <li>การอธิบายเหตุผลทางเทคนิคให้เพื่อนเข้าใจ</li>
+        <li>ทำ Data Visualization จากผลทดสอบ</li>
+        <li>การเขียนรายงานเชิงเทคนิคแบบกระชับ</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Project & Time Management</div>
+      <ul>
+        <li>การวาง Capstone เป็น Sprint + Milestone</li>
+        <li>การแบ่งงานระหว่างฝ่าย Driver + Auto</li>
+        <li>Balance Quality vs Deadline</li>
+        <li>การจัดลำดับความสำคัญของงาน</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Team Collaboration</div>
+      <ul>
+        <li>การแบ่งบทบาท Builder/Programmer/Driver</li>
+        <li>การประสานงานระหว่างฝ่ายต่างๆ</li>
+        <li>การแก้ไขความขัดแย้งในทีมอย่างสร้างสรรค์</li>
+        <li>Lead และ Follow ในสถานการณ์ต่างๆ</li>
+      </ul>
+    </div>
+    <div class="skill-card blue">
+      <div class="card-header">Strategic Thinking</div>
+      <ul>
+        <li>การวางแผน Game Strategy ก่อนการแข่งขัน</li>
+        <li>การปรับแผนเมื่อสถานการณ์เปลี่ยน</li>
+        <li>การ Trade-off ระหว่าง Risk vs Reward</li>
+        <li>การมี Plan B รองรับ Plan A ที่ล้มเหลว</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — V5-03 WEEKLY CONTENT  ★ NEW ★                       -->
+<!-- ============================================================ -->
+<div class="slide" data-course="green">
+  <span class="tag green">WEEKLY&nbsp;CONTENT</span>
+  <h1>เนื้อหารายสัปดาห์ <span class="code">V5-03</span></h1>
+  <p class="subtitle">ครอบคลุม 12 สัปดาห์ · โปรเจค Mission Express — Autonomous Delivery Robot (C++)</p>
+  <div class="weekly-grid">
+    <div class="week-card green"><div class="week-label">WEEK 1</div><h3>Mission Kickoff + Intro C++</h3><div class="topics">VEXcode V5 C++, main(), Function Syntax, LED Test</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 2</div><h3>Field Tour + Brainstorm + BOM</h3><div class="topics">5 Sketches, Decision Matrix, Bill of Materials v1</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 3</div><h3>Drivetrain Build + C++ Functions</h3><div class="topics">4WD Build, void func(int), driveForward(mm), Sprint Build 1</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 4</div><h3>PID Drive — IMU + Rotation + Distance</h3><div class="topics">Heading Correction, Proportional Control, Anti-Crash Brake</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 5</div><h3>Manipulator Design + Build</h3><div class="topics">Claw / Roller / Pincher Selection, pickUp() / dropOff()</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 6</div><h3>Potentiometer Feedback + Limit Switch</h3><div class="topics">Closed-Loop Arm, moveArmToAngle(±2°), Mechanical Safety</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 7</div><h3>AI Vision — Color Detection</h3><div class="topics">4 Color Signatures, enum CargoColor, detectCargoColor()</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 8</div><h3>AprilTag Localization — Drop Zone ID</h3><div class="topics">AprilTag 16h5, findDropZone(), turnToTag() Fine-Tune</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 9</div><h3>State Machine — Mission Flow</h3><div class="topics">enum State, switch case, 8-State FSM Implementation</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 10</div><h3>Full Autonomous Run + Error Recovery</h3><div class="topics">4-Cargo Loop, Timeout, Retry Logic, Sensor Fusion</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 11</div><h3>20-Trial Test + Iteration Sprint</h3><div class="topics">Failure Mode Analysis, Data Logging, Version 2 Refinement</div></div>
+    <div class="week-card green"><div class="week-label">WEEK 12</div><h3>Demo Day + Engineering Notebook</h3><div class="topics">5-min Presentation, 40+ หน้า EN, Reflection + Award</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 8 — V5-03 HARD SKILLS -->
+<div class="slide" data-course="green">
+  <span class="tag green">HARD&nbsp;SKILLS</span>
+  <h1>ทักษะที่ขยับสู่ Project Engineer</h1>
+  <p class="subtitle">ต่อยอด V5-02 สู่การออกแบบระบบหุ่นยนต์อัตโนมัติเต็มรูปแบบ</p>
+  <div class="skills-grid">
+    <div class="skill-card green">
+      <div class="card-header">Advanced Programming (C++)</div>
+      <ul>
+        <li>VEXcode V5 C++ Syntax & Compilation</li>
+        <li>Functions & Code Modularization</li>
+        <li>enum + switch case (State Machine)</li>
+        <li>Class Objects & Method Calls</li>
+        <li>Code Comments & Header Files</li>
+        <li>Debug Workflow + Brain Print Statement</li>
+      </ul>
+    </div>
+    <div class="skill-card green">
+      <div class="card-header">Autonomous Systems</div>
+      <ul>
+        <li>Finite State Machine (FSM) Design</li>
+        <li>Multi-Sensor Fusion in Real-Time</li>
+        <li>PID Control - Heading + Distance</li>
+        <li>Mission Sequencing (Pickup → Drop)</li>
+        <li>Timeout, Retry, Error Recovery</li>
+        <li>Closed-Loop Manipulator Control</li>
+      </ul>
+    </div>
+    <div class="skill-card green">
+      <div class="card-header">Mechanical Integration</div>
+      <ul>
+        <li>Subsystem Integration (Drive + Arm)</li>
+        <li>Sensor Mounting & Routing</li>
+        <li>Cable Management ระดับการแข่งขัน</li>
+        <li>Iteration-Based Mechanical Redesign</li>
+        <li>Weight Distribution & Balance Tuning</li>
+        <li>BOM Management ตลอดโปรเจค</li>
+      </ul>
+    </div>
+    <div class="skill-card green">
+      <div class="card-header">Engineering Documentation</div>
+      <ul>
+        <li>Engineering Notebook 40+ หน้า (EDP Cycle)</li>
+        <li>State Diagram & Flowchart Drawing</li>
+        <li>Decision Matrix Analysis เชิงลึก</li>
+        <li>20-Trial Data Logging + Statistics</li>
+        <li>Failure Mode Analysis (FMA)</li>
+        <li>Demo Video + Pitch Presentation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9 — V5-03 SOFT SKILLS -->
+<div class="slide" data-course="green">
+  <span class="tag amber">SOFT&nbsp;SKILLS</span>
+  <h1>ทักษะอ่อนสำหรับ Project Leader</h1>
+  <p class="subtitle">ทักษะ Project Management + Presentation พร้อมก้าวสู่ VRC Competition</p>
+  <div class="skills-grid">
+    <div class="skill-card amber">
+      <div class="card-header">Project Management</div>
+      <ul>
+        <li>Sprint Planning - 6 Phases × 2 สัปดาห์</li>
+        <li>Milestone Tracking ตลอดโปรเจค 12 สัปดาห์</li>
+        <li>การจัดลำดับ Backlog ของ Subsystem</li>
+        <li>การ Manage Iteration Cycle (Test → Improve)</li>
+      </ul>
+    </div>
+    <div class="skill-card amber">
+      <div class="card-header">Leadership & Communication</div>
+      <ul>
+        <li>การนำเสนอ Demo Day 5 นาทีต่อหน้าผู้ปกครอง</li>
+        <li>การอธิบาย Technical Decision ให้ทีมเข้าใจ</li>
+        <li>การ Pitch แนวคิดออกแบบให้กับโค้ช</li>
+        <li>การรับ Feedback อย่างสร้างสรรค์</li>
+      </ul>
+    </div>
+    <div class="skill-card amber">
+      <div class="card-header">Problem Solving</div>
+      <ul>
+        <li>Failure-First Mindset - ยอมรับและเรียนรู้</li>
+        <li>Root Cause Analysis เมื่อภารกิจล้มเหลว</li>
+        <li>การออกแบบ Plan B และ Recovery Path</li>
+        <li>Trade-off ระหว่าง Mission Score vs Build Quality</li>
+      </ul>
+    </div>
+    <div class="skill-card amber">
+      <div class="card-header">Self-Reflection & Growth</div>
+      <ul>
+        <li>การเขียน Reflection Journal ปลายสัปดาห์</li>
+        <li>การประเมินตนเอง (Self-Assessment Rubric)</li>
+        <li>การตั้งเป้าหมายเพื่อก้าวสู่ VRC Competition</li>
+        <li>การ Mentor น้อง V5-01 ในช่วงปิดคอร์ส</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 </div>
-<button class="print-btn" onclick="window.print()"><i class="ti ti-printer"></i> พิมพ์เอกสาร</button>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" title="Previous (←)">‹</button>
+  <span class="counter"><span id="current">1</span> / <span id="total">9</span></span>
+  <button id="next" title="Next (→)">›</button>
+  <div class="jump">
+    <button class="blue act"   data-jump="1">V5-01</button>
+    <button class="purple"     data-jump="4">V5-02</button>
+    <button class="green"      data-jump="7">V5-03</button>
+  </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+document.getElementById('total').textContent = total;
+
+function show(idx) {
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(total - 1, idx));
+  slides[current].classList.add('active');
+  document.getElementById('current').textContent = current + 1;
+  document.getElementById('prev').disabled = (current === 0);
+  document.getElementById('next').disabled = (current === total - 1);
+
+  // Highlight active course jump button
+  const course = slides[current].dataset.course;
+  document.querySelectorAll('.jump button').forEach(b => {
+    b.classList.toggle('act', b.classList.contains(course));
+  });
+}
+
+document.getElementById('prev').onclick = () => show(current - 1);
+document.getElementById('next').onclick = () => show(current + 1);
+document.querySelectorAll('.jump button').forEach(b => {
+  b.onclick = () => show(parseInt(b.dataset.jump) - 1);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(current + 1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
+  else if (e.key === 'Home') { show(0); }
+  else if (e.key === 'End')  { show(total - 1); }
+});
+
+show(0);
+</script>
+
 </body>
 </html>
